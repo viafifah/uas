@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const auth = require('../configs/auth');
 
 const router = express.Router();
 
@@ -10,9 +10,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.get('/', bookController.getIndexBook);
 router.get('/:book_id', bookController.getDetailBook);
-router.post('/', urlencodedParser, bookController.storeBook);
-router.post('/:book_id', urlencodedParser, bookController.updateBook);
-router.post('/:book_id/destroy', urlencodedParser, bookController.destroyBook);
+router.post('/', urlencodedParser, auth.verifyToken, bookController.storeBook);
+router.put('/:book_id', urlencodedParser, auth.verifyToken, bookController.updateBook);
+router.delete('/:book_id/destroy', urlencodedParser, auth.verifyToken, bookController.destroyBook);
 
 router.post('/search/:judul', urlencodedParser, bookController.searchBook);
 
