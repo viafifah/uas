@@ -6,9 +6,9 @@ class Book extends Sequelize.Model {}
 
 Book.init({
   judul: Sequelize.STRING,
-  pengarang: Sequelize.STRING,
-  penerbit: Sequelize.STRING,
-  price: Sequelize.INTEGER,
+  namaPengarang: Sequelize.STRING,
+  namaPenerbit: Sequelize.STRING,
+  harga: Sequelize.INTEGER,
 }, { sequelize, modelName: 'book' });
 
 module.exports = Book;

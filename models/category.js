@@ -5,8 +5,8 @@ const sequelize = require('../configs/sequelize');
 class Category extends Sequelize.Model {}
 
 Category.init({
-    name: Sequelize.STRING,
-    description: Sequelize.STRING
+    nama: Sequelize.STRING,
+    keterangan: Sequelize.STRING
 }, {
     sequelize,
     modelName: 'category'

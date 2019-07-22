@@ -12,7 +12,7 @@ router.get('/', userController.getAllUser);
 router.get('/:user_id', userController.getDetailUser);
 router.post('/', urlencodedParser, auth.verifyToken, userController.storeUser);
 router.put('/:user_id', urlencodedParser, auth.verifyToken, userController.updateUser);
-router.delete('/:user_id/destroy', urlencodedParser, auth.verifyToken, userController.destroyUser);
+router.delete('/:user_id', urlencodedParser, auth.verifyToken, userController.destroyUser);
 
 router.post('/search/:username', urlencodedParser, userController.searchUser);
 

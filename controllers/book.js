@@ -53,8 +53,8 @@ module.exports.storeBook = (req, res) => {
             if(authData.admin == 1){ 
                 Book.create({
                     judul: req.body.judul,
-                    pengarang: req.body.pengarang,
-                    penerbit: req.body.penerbit,
+                    namaPengarang: req.body.namaPengarang,
+                    namaPenerbit: req.body.namaPenerbit,
                     price: req.body.price,
                 })
                 .then((book) => {
@@ -95,8 +95,8 @@ module.exports.updateBook = (req, res) => {
                         });
                     }
                     book.judul = req.body.judul;
-                    book.pengarang = req.body.pengarang;
-                    book.penerbit = req.body.penerbit;
+                    book.namaPengarang = req.body.namaPengarang;
+                    book.namaPenerbit = req.body.namaPenerbit;
                     book.price = req.body.price;
                     book.save();
                     
@@ -157,7 +157,7 @@ module.exports.searchBook = (req, res) => {
     })
     .then((book) => {
         res.status(200).json({
-            msg: 'search results',
+            msg: 'Hasil',
             result: book
         });
     })

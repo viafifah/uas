@@ -42,8 +42,8 @@ module.exports.getDetailCategory = (req, res) => {
 
 module.exports.storeCategory = (req, res) => {
     Category.create({
-            name: req.body.name,
-            description: req.body.description
+            nama: req.body.nama,
+            keterangan: req.body.keterangan
         })
         .then((category) => {
             res.status(200).json({
@@ -68,8 +68,8 @@ module.exports.updateCategory = (req, res) => {
                     msg: 'Category Not Found'
                 });
             }
-            category.name = req.body.name;
-            category.description = req.body.description;
+            category.nama = req.body.nama;
+            category.keterangan = req.body.keterangan;
             category.save();
 
             return res.status(200).json({
@@ -103,7 +103,7 @@ module.exports.searchCategory = (req, res) => {
     Category.findAll({
             limit: 10,
             where: {
-                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.params.name + '%')
+                nama: sequelize.where(sequelize.fn('LOWER', sequelize.col('nama')), 'LIKE', '%' + req.params.nama + '%')
             }
         })
         .then((category) => {

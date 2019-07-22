@@ -15,7 +15,7 @@ router.get('/', categoryController.getAllCategory);
 router.get('/:category_id', categoryController.getDetailCategory);
 router.post('/', urlencodedParser, categoryController.storeCategory);
 router.put('/:category_id', urlencodedParser, categoryController.updateCategory);
-router.delete('/:category_id/destroy', urlencodedParser, categoryController.destroyCategory);
+router.delete('/:category_id', urlencodedParser, categoryController.destroyCategory);
 
 router.post('/search/:name', urlencodedParser, categoryController.searchCategory);
 
