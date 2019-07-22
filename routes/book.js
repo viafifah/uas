@@ -14,4 +14,6 @@ router.post('/', urlencodedParser, bookController.storeBook);
 router.post('/:book_id', urlencodedParser, bookController.updateBook);
 router.post('/:book_id/destroy', urlencodedParser, bookController.destroyBook);
 
+router.post('/search/:judul', urlencodedParser, bookController.searchBook);
+
 module.exports = router; 

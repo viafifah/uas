@@ -1,4 +1,5 @@
 const Book = require('../models/book');
+const sequelize = require('sequelize');
 
 module.exports.getIndexBook = (req, res) => {
 
@@ -102,3 +103,21 @@ module.exports.destroyBook = (req, res) => {
         console.log(error)
     });
 }
+
+module.exports.searchBook = (req, res) => {
+    Book.findAll({
+        limit: 10,
+        where: {
+            judul: sequelize.where(sequelize.fn('LOWER', sequelize.col('judul')), 'LIKE', '%' + req.params.judul + '%')
+        }
+    })
+    .then((book) => {
+        res.status(200).json({
+            msg: 'search results',
+            result: book
+        });
+    })
+    .catch((error) => {
+        console.log(error)
+    });
+}  
