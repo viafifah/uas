@@ -53,7 +53,7 @@ module.exports.storeUser = (req, res) => {
                 msg: error.message
             });
         } else {
-            if(authData.admin == 'Admin'){ //isAdmin
+            if(authData.admin == 'Admin'){
                 var salt = bcrypt.genSaltSync(10);
                 var hash = bcrypt.hashSync(req.body.password, salt);
                 User.findOrCreate({
