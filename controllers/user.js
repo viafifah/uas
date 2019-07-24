@@ -53,7 +53,7 @@ module.exports.storeUser = (req, res) => {
                 msg: error.message
             });
         } else {
-            if(authData.admin == 1){ //isAdmin
+            if(authData.admin == 'Admin'){ //isAdmin
                 var salt = bcrypt.genSaltSync(10);
                 var hash = bcrypt.hashSync(req.body.password, salt);
                 User.findOrCreate({
@@ -91,7 +91,7 @@ module.exports.updateUser = (req, res) => {
                 msg: error.message
             });
         } else {
-            if(authData.admin == 1){ //isAdmin
+            if(authData.admin == 'Admin'){
                 User.findOne({
                     where: {
                         id: req.params.user_id
@@ -134,7 +134,7 @@ module.exports.destroyUser = (req, res) => {
                 msg: error.message
             });
         } else {
-            if(authData.admin == 1){ //isAdmin
+            if(authData.admin == 'Admin'){
                 User.destroy({
                     where: {
                         id: req.params.user_id

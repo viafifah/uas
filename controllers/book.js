@@ -44,18 +44,21 @@ module.exports.getDetailBook = (req, res) => {
 } 
 
 module.exports.storeBook = (req, res) => {
+
     jwt.verify(req.token, process.env.SECRETKEY, (error, authData) => {
         if(error){
             res.status(403).json({
                 msg: error.message
             });
         } else {
-            if(authData.admin == 1){ 
+            if(authData.admin == 'Admin'){ 
                 Book.create({
                     judul: req.body.judul,
                     namaPengarang: req.body.namaPengarang,
                     namaPenerbit: req.body.namaPenerbit,
-                    price: req.body.price,
+                    harga: req.body.harga,
+                    categoryId: req.body.categoryId,
+                    penerbitId: req.body.penerbitId
                 })
                 .then((book) => {
                     res.status(200).json({
@@ -82,7 +85,7 @@ module.exports.updateBook = (req, res) => {
                 msg: error.message
             });
         } else {
-            if(authData.admin == 1){ //isAdmin
+            if(authData.admin == 'Admin'){
                 Book.findOne({
                     where: {
                         id: req.params.book_id
@@ -97,7 +100,9 @@ module.exports.updateBook = (req, res) => {
                     book.judul = req.body.judul;
                     book.namaPengarang = req.body.namaPengarang;
                     book.namaPenerbit = req.body.namaPenerbit;
-                    book.price = req.body.price;
+                    book.harga = req.body.harga;
+                    book.categoryId =  req.body.categoryId,
+                    book.penerbitId = req.body.penerbitId;
                     book.save();
                     
                     return res.status(200).json({
@@ -125,7 +130,7 @@ module.exports.destroyBook = (req, res) => {
                 msg: error.message
             });
         } else {
-            if(authData.admin == 1){ //isAdmin
+            if(authData.admin == 'Admin'){
                 Book.destroy({
                     where: {
                         id: req.params.book_id

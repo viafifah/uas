@@ -8,7 +8,7 @@ User.init({
   username: Sequelize.STRING,
   email: Sequelize.STRING,
   password: Sequelize.STRING,
-  role: Sequelize.INTEGER,
+  role: Sequelize.STRING,
 }, { sequelize, modelName: 'user' });
 
 module.exports = User; 
