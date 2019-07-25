@@ -10,7 +10,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.get('/', userController.getAllUser);
 router.get('/:user_id', userController.getDetailUser);
-router.post('/', urlencodedParser, auth.verifyToken, userController.storeUser);
+// router.post('/', urlencodedParser, auth.verifyToken, userController.storeUser);
+router.post('/', urlencodedParser, userController.storeUser);
 router.put('/:user_id', urlencodedParser, auth.verifyToken, userController.updateUser);
 router.delete('/:user_id', urlencodedParser, auth.verifyToken, userController.destroyUser);
 
