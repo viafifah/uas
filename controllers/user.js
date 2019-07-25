@@ -47,13 +47,13 @@ module.exports.getDetailUser = (req, res) => {
 } 
 
 module.exports.storeUser = (req, res) => {
-    jwt.verify(req.token, process.env.SECRETKEY, (error, authData) => {
-        if(error){
-            res.status(403).json({
-                msg: error.message
-            });
-        } else {
-            if(authData.admin == 'Admin'){
+    // jwt.verify(req.token, process.env.SECRETKEY, (error, authData) => {
+    //     if(error){
+    //         res.status(403).json({
+    //             msg: error.message
+    //         });
+    //     } else {
+    //         if(authData.admin == 'Admin'){
                 var salt = bcrypt.genSaltSync(10);
                 var hash = bcrypt.hashSync(req.body.password, salt);
                 User.findOrCreate({
@@ -74,13 +74,13 @@ module.exports.storeUser = (req, res) => {
                 .catch((error) => {
                     console.log(error)
                 });
-            } else {
-                res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
-                });
-            }
-        }
-    })
+    //         } else {
+    //             res.status(403).json({
+    //                 msg: 'Forbiden, You Are Not an Admin!'
+    //             });
+    //         }
+    //     }
+    // })
     
 } 
 
